@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sxc.ds.mapper.UserMapper">
+    <insert id="save" parameterType="com.sxc.ds.domain.User">
+        insert into user(age, password, sex, username) values (#{age}, #{password}, #{sex}, #{username})
+    </insert>
+    <update id="update" parameterType="com.sxc.ds.domain.User">
+        update user
+        <set>
+            <if test="age != null">
+                age = #{age},
+            </if>
+            <if test="password != null">
+                password=#{password},
+            </if>
+            <if test="sex != null">
+                sex=#{sex},
+            </if>
+            <if test="username != null">
+                username=#{username},
+            </if>
+        </set>
+        where id=#{id}
+    </update>
+    <delete id="deleteById" parameterType="long">
+        delete from user where id = #{id}
+    </delete>
+    <select id="selectById" resultType="com.sxc.ds.domain.User" parameterType="long">
+        select id, password, age, sex, username from user where id = #{id}
+    </select>
+    <select id="selectAll" resultType="com.sxc.ds.domain.User">
+        select id, password, age, sex, username from user
+    </select>
+</mapper>

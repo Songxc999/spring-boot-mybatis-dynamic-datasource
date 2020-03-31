@@ -1,0 +1,27 @@
+spring:
+  datasource:
+    master:
+      driver-class-name: com.mysql.jdbc.Driver
+      url: jdbc:mysql://127.0.0.1:3306/mail?useSSL=false&useUnicode=true&characterEncoding=utf8
+      username: root
+      password: root
+      type: com.zaxxer.hikari.HikariDataSource
+    cluster:
+      - key: slave1
+        password: root
+        url: jdbc:mysql://127.0.0.1:3306/springtestdemo?useSSL=false&useUnicode=true&characterEncoding=UTF-8
+        idle-timeout: 20000
+        driver-class-name: com.mysql.jdbc.Driver
+        username: root
+        type: com.zaxxer.hikari.HikariDataSource
+      - key: slave2
+        url: jdbc:mysql://127.0.0.1:3306/myblog?useSSL=false&useUnicode=true&characterEncoding=UTF-8
+        username: root
+        password: root
+        driver-class-name: com.mysql.jdbc.Driver
+mybatis:
+  mapper-locations: classpath:mapper/*Mapper.xml
+  type-aliases-package: com.sxc.ds.domain
+logging:
+  level:
+    com.hps: debug
